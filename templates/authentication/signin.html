@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body {
+  background-image: url({% static 'authentication/img/keshti2.jpeg' %});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 20px;
+  padding: 20px;
+}
+.khat1 {
+    text-transform: uppercase;
+    font-family: "Nirmala UI";
+    font-weight: bold;
+    color: #ffff;
+}
+.khat2 {
+    font-family: "Nirmala UI";
+    color: #3a3a3a;
+    font-weight: bold;
+    color: #3a3a3a;
+
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "authentication/css/w3.css" %}>
+    <link rel="stylesheet" href={% static "authentication/css/style.css" %}>
+    <title>Sign In</title>
+</head>
+<body>
+
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<section>
+    <div class="w3-container w3-center w3-animate-opacity">
+        <h2 class="khat1">xikode app</h2>
+    <hr style="alignment: center">
+        <p class="khat1">anbardari software gang shit</p>
+    <form method="post" action="/signin" class="mb-2">
+        {% csrf_token %}
+        <div class="form-group">
+            <label dir="rtl" for="username" class="khat1">نام کاربری</label>
+            <input type="text" class="form-control w3-input w3-center w3-border w3-round-xxlarge" id="username" name="username" placeholder="نام کابری خود را وارد کنید" Required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="pass1" class="khat1">کلمه عبور</label>
+            <input type="password" class="form-control w3-input w3-center w3-border w3-round-xxlarge" id="pass1" name="pass1" placeholder="کلمه عبور خود را وارد کنید" Required>
+        </div>
+        <br>
+        <button dir="rtl" style="text-align:left" type="submit" class="btn btn-primary w3-btn w3-black w3-round-xxlarge">ورود</button>
+    </form>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+python deluser.py

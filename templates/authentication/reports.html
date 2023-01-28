@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+        body {
+  background-image: url({% static 'authentication/img/container.jpg' %});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 20px;
+  padding: 20px;
+}
+        .khat1 {
+    text-transform: uppercase;
+    font-family: "Nirmala UI";
+    font-weight: bold;
+    color: #ffff;
+}
+.khat2 {
+    font-family: "Nirmala UI";
+    color: #3a3a3a;
+    font-weight: bold;
+    color: #3a3a3a;
+
+}
+
+.height {
+    height: 500px;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'authentication/js/html5-qrcode.min.js' %}"></script>
+    <script src="{% static 'authentication/js/jsQR.js' %}"></script>
+    <link rel="stylesheet" href={% static "authentication/css/w3.css" %}>
+    <link rel="stylesheet" href={% static "authentication/css/style.css" %}>
+    <title>گزارش کالا</title>
+</head>
+<body>
+
+    {% for message in messages %}
+
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+    <div class="w3-center w3-mobile khat1" id="reader"></div>
+
+
+<script type="text/javascript">
+function onScanSuccess(decodedText, decodedResult) {
+    // Handle on success condition with the decoded text or result.
+    try{
+        document.getElementById("conumber").value=decodedText;
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+	"reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+<section>
+    <div class="w3-container w3-center w3-mobile">
+
+<br>
+<br>
+<br>
+        <h3 class="khat1">بارکد کالا را اسکن کنید</h3>
+    <form method="post" action="/reports" class="mb-2">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="conumber" class="khat1">بارکد کالا</label>
+            <br>
+            <input type="text" class="form-control w3-input w3-center w3-border w3-round-xxlarge" id="conumber" name="conumber" placeholder=" بارکد کالا را وارد کنید" Required>
+        </div>
+        <br>
+        <br>
+
+
+        <button type="submit" class="btn btn-primary w3-btn w3-white w3-round-large"><b>گزارش گیری</b></button>
+
+    </form>
+    <br>
+    <button type="button" class="w3-btn w3-white w3-round-large"><a href="homez"><b>بازگشت</b></a></button>
+    </div>
+</section>
+
+</body>
+</html>

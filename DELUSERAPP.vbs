@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "2.bat", 0, True
